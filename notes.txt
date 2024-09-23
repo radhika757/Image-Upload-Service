@@ -1,0 +1,4 @@
+>> Three types of File Uploading -
+    1. Pre-signed URL (From FE)
+    2. Server Side
+    3. multi-part uplaod
