@@ -8,7 +8,7 @@ const pool = new Pool({
     port: 5432
 })
 
-const connectToDB = () => {
+
 pool.connect((err, client, release) => {
     if (err) {
         console.log('Error');
@@ -16,6 +16,7 @@ pool.connect((err, client, release) => {
     }
     console.log('Connected to the DB');
     release();
-}) }
+})
 
-module.exports = connectToDB;
+
+module.exports = { pool };
