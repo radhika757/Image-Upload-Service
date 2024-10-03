@@ -1,7 +1,8 @@
 const express = require('express');
-const cors = require('cors');
 const multer = require('multer');
+const cors = require('cors');
 const pool = require('./db');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const app = express(); // instance of express application. 
@@ -18,10 +19,10 @@ app.listen(PORT, () => {
 // Setup Multer storage 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // directory to store files
+        cb(null, 'upload/'); // directory to store files
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extreme(file.originalname)); //unique filename
+        cb(null, Date.now() + path.extname(file.originalname)); //unique filename
     },
 });
 
@@ -32,8 +33,8 @@ app.use('/uploads', express.static('uploads'));
 
 // Route to handle file upload 
 app.post('/upload', upload.single('file'), async (req, res) => {
-    const { file } = req;
-    const { filename } = file;
+    const { filename } = req.file;
+    
     try {
         // Insert file path into db
         const query = 'INSERT INTO files (filename) VALUES ($1) RETURNING *';
