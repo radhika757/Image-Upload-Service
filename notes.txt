@@ -2,3 +2,6 @@
     1. Pre-signed URL (From FE)
     2. Server Side
     3. multi-part uplaod
+
+>> Multer - Multer is a nodejs middleware that is used for easy handling of multipart form data
+that is used when file uploading is done.
